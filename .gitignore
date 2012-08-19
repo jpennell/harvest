@@ -25,3 +25,13 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+#Sublime Text
+# SublimeText project files
+/*.sublime-project
+*.sublime-workspace
+
+#Linux
+.*
+!.gitignore
+*~
