@@ -4,6 +4,7 @@ from utils import escape
 
 class Entity(object):
     def __init__(self):
+        self.original_text = None
         self.display_text = None
         self.display_html = None
         self.start_index = None
@@ -43,7 +44,8 @@ class MarkdownUrlHarvester(Harvester):
         html = '<a href="%s" rel="external nofollow">%s</a>' % (link, text)
 
         entity = Entity()
-        entity.display_text = text
+        entity.original_text = matched_text
+        entity.display_text = '%s (%s)' % (text, link)
         entity.display_html = html
         entity.start_index = match.start()
         entity.end_index = match.end()
