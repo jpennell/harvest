@@ -11,13 +11,19 @@ class TestHarvester(Harvester):
 
 
 def main():
+    parse("[Test](example.com)")
     parse("[Test](http://example.com)")
+    parse("[Test](https://example.com)")
+    parse("[Test](ftp://example.com)")
+    parse("[Test](file://D://example/blahblah/readme.txt)")
+    parse("[Test](mailto://pennell.james@gmail.com)")
 
 
 def parse(text):
     print "----------------------------------"
     print text
-    harvest.harvest(text, harvesters=HARVESTERS)
+    #harvest.harvest(text, harvesters=HARVESTERS)
+    harvest.harvest(text)
 
 
 if __name__ == "__main__":

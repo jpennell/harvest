@@ -1,9 +1,13 @@
-HARVESTERS = ['MarkdownUrlHarvester,harvest.harvesters']
+DEFAULT_HARVESTERS = ['MarkdownUrlHarvester,harvest.harvesters']
 
 
-def harvest(text, harvesters=HARVESTERS):
+def harvest(text, harvesters=DEFAULT_HARVESTERS):
     instances = [load_class(namespace) for namespace in harvesters]
-    [instance.harvest(text) for instance in instances]
+
+    for instance in instances:
+        entities = instance.harvest(text)
+        for entity in entities:
+            print entity
 
 
 def load_class(namespace):
