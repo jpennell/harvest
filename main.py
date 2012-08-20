@@ -20,6 +20,8 @@ def main():
 
     parse("blah [Test](http://example.com) test [Test](http://example.com)")
 
+    parse("nothing nothing")
+
 
 def parse(text):
     print "----------------------------------"

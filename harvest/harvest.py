@@ -31,6 +31,7 @@ def harvest(text, harvesters=DEFAULT_HARVESTERS):
         display_text = display_text + escape(text[current_index:entity.start_index]) + entity.display_text
         current_index = entity.end_index
 
+    display_text = display_text + escape(text[current_index:])
     display_html = display_html + escape(text[current_index:])
 
     return {
