@@ -11,16 +11,10 @@ class TestHarvester(Harvester):
 
 
 def main():
-    parse("test [Test](example.com)")
-    parse("[Test](http://example.com) test")
-    parse("asdfasdfasdf [Test](https://example.com)")
-    parse("[Test](ftp://example.com)")
-    parse("[Test](file://D://example/blahblah/readme.txt)")
-    parse("[Test](mailto://pennell.james@gmail.com)")
-
-    parse("blah [Test](http://example.com) test [Test](http://example.com)")
-
-    parse("nothing nothing")
+    parse("nothing")
+    parse("[example](http://example.ca)")
+    parse("[example](<http://example.ca>)")
+    parse("[example](http://example.ca 'example title')")
 
 
 def parse(text):
