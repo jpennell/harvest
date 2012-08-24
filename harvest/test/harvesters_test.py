@@ -604,6 +604,8 @@ class TestMarkdownUrlHarvester(unittest.TestCase):
         Should only match valid link protocols
         """
         entities = self.harvester.harvest('[example](http//example.ca)')
+        from harvest.utils import print_entity
+        print_entity(entities[0])
         self.assertEqual(len(entities), 0)
 
     def test_malformed_protocol1(self):

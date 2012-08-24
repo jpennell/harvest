@@ -110,8 +110,19 @@ class MarkdownUrlHarvester(Harvester):
                 # Not a safe url
                 return default_url
 
+        url = urlunparse(url)
+
+        protocols = ['http://', 'https://', 'ftp://', 'file://', 'mailto://', 'git://']
+        protocol_specified = [url.find(protocol) >= 0 for protocol in protocols]
+
+        if not any(p for p in protocol_specified):
+            if scheme:
+                #a scheme was specified but it didn't match one of the ones we're looking for
+                raise
+            url = "http://%s" % url
+
         # Url passes all tests. Return url as-is.
-        return urlunparse(url)
+        return url
 
     def _harvest_url(self, match):
 
@@ -148,7 +159,11 @@ class MarkdownUrlHarvester(Harvester):
                 title = None
 
             #Sanitize the url
-            href = self._sanitize_url(href)
+            try:
+                href = self._sanitize_url(href)
+            except:
+                #If we couldn't sanitize the url, return no entity found
+                return
         else:
             #There was some problem and there is no href
             #Make sure there is no title and the href address goes nowhere
